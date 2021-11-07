@@ -22,8 +22,8 @@ class Register extends React.Component {
     this.setState({ password: event.target.value });
   };
 
-  onSubmitSignIn = () => {
-    fetch("http://localhost:3000/register", {
+  onRegister = () => {
+    fetch("https://desolate-woodland-50416.herokuapp.com/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -34,7 +34,6 @@ class Register extends React.Component {
     })
       .then((response) => response.json())
       .then((user) => {
-        console.log('getting closer', user)
         if (user.id > 0) {
           this.props.loadUser(user);
           this.props.onRouteChange("home");
@@ -88,7 +87,7 @@ class Register extends React.Component {
             </fieldset>
             <div className="">
               <input
-                onClick={this.onSubmitSignIn}
+                onClick={this.onRegister}
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="Register"
